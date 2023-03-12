@@ -1,0 +1,45 @@
+/*
+-- Part 5: INTERESTING QUERIES -- RESULT SET IS SHOWN BELOW EACH QUERY
+
+-- Retrieve the total sales made by an employee
+SELECT SUM(price) as TOTAL_SALES FROM ITEM JOIN SALES_HISTORY ON ITEM.iid = SALES_HISTORY.iid WHERE SALES_HISTORY.eid = 101;
+/*
+TOTAL_SALES
+-----------
+400
+*/
+
+-- Retrieve the items maintained by an employee on a specific date.
+SELECT ITEM.iid, ITEM.type, MAINTAINS.date FROM ITEM JOIN MAINTAINS ON ITEM.iid = MAINTAINS.iid WHERE MAINTAINS.eid = 104 AND MAINTAINS.date = '2022-02-03 11:00:00';
+/*
+iid   type  date               
+----  ----  -------------------
+1010  Bike  2022-02-03 11:00:00
+*/
+
+-- Retrieve all the employees who have sold an item priced above $100.
+SELECT DISTINCT EMPLOYEE.fname, EMPLOYEE.lname FROM EMPLOYEE JOIN SALES_HISTORY ON EMPLOYEE.eid = SALES_HISTORY.eid JOIN ITEM ON ITEM.iid = SALES_HISTORY.iid WHERE ITEM.price > 100;
+/*
+fname    lname      
+-------  -----------
+Buggs    Bunny      
+Horatio  Smith      
+Willy    Shakespeare
+*/
+
+-- Retrieve the most rented item
+SELECT ITEM.iid, ITEM.type FROM ITEM JOIN RENTS ON ITEM.iid = RENTS.iid GROUP BY ITEM.iid ORDER BY COUNT(*) DESC LIMIT 1;
+/*
+iid   type
+----  ----
+1001  Ski
+*/
+
+-- Retrieve the most bought item type
+SELECT ITEM.type as ITEM_TYPE FROM ITEM GROUP BY ITEM.cid ORDER BY COUNT(*) LIMIT 1;
+/*
+ITEM_TYPE
+---------
+Ski 
+*/
+*/
