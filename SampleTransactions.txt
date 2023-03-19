@@ -1,3 +1,4 @@
+/* Matthew O'Malley-Nichols, Adam Henry, Shane Ludwig*/
 /*
 -- Part 5: INTERESTING QUERIES -- RESULT SET IS SHOWN BELOW EACH QUERY
 
